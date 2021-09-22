@@ -1,14 +1,15 @@
-const { program } = require('commander');
-const glob = require('glob');
-const path = require('path');
-const fs = require('fs');
-const { compile, compileFromFile } = require('json-schema-to-typescript');
+import { program } from 'commander';
+import fs from 'fs';
+import { glob } from 'glob';
+import { compileFromFile } from 'json-schema-to-typescript';
+import path from 'path';
+
 
 const defautMatchPattern = '*.schema.json';
 
-const compileSchemas = (schemas) => {
+const compileSchemas = (schemaPathes: string | string[]) => {
   return new Promise((resolve, reject) => {
-    const _schemas = Array.isArray(schemas) ? schemas : [schemas];
+    const _schemas = Array.isArray(schemaPathes) ? schemaPathes : [schemaPathes];
     const compilePromises = _schemas.map((file) => compileFromFile(file, {
       bannerComment: '/** Hello world */',
       format: false,
@@ -16,10 +17,10 @@ const compileSchemas = (schemas) => {
 
     Promise.all(compilePromises)
       .then((compiles) => {
-        const filePromises = compiles.map((compile, index) => new Promise((resolveWrite, rejectWrite) => {
-          fs.writeFile(_schemas[index].replace(/json$/, 'ts'), compile, { encoding: 'utf8' }, (err, data) => {
+        const filePromises = compiles.map((compile, index) => new Promise<void>((resolveWrite, rejectWrite) => {
+          fs.writeFile(_schemas[index].replace(/json$/, 'ts'), compile, { encoding: 'utf8' }, (err) => {
             if (err) rejectWrite(err);
-            else resolveWrite(data);
+            else resolveWrite();
           });
         }));
 
@@ -28,9 +29,9 @@ const compileSchemas = (schemas) => {
   });
 }
 
-const matchFiles = (pattern) => {
-  return new Promise((resolve, reject) => {
-    glob(path.join(__dirname, '..', `!(node_modules)/**/${pattern}`), (err, files) => {
+const matchFiles = (pattern: string) => {
+  return new Promise<string[]>((resolve, reject) => {
+    glob(path.join(__dirname, '..', `!(node_modules|dist)/**/${pattern}`), (err, files) => {
       if (err) reject(err);
       else resolve(files);
     });
