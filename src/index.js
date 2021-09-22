@@ -9,7 +9,10 @@ const defautMatchPattern = '*.schema.json';
 const compileSchemas = (schemas) => {
   return new Promise((resolve, reject) => {
     const _schemas = Array.isArray(schemas) ? schemas : [schemas];
-    const compilePromises = _schemas.map((file) => compileFromFile(file));
+    const compilePromises = _schemas.map((file) => compileFromFile(file, {
+      bannerComment: '/** Hello world */',
+      format: false,
+    }));
 
     Promise.all(compilePromises)
       .then((compiles) => {

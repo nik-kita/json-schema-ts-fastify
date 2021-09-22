@@ -1,4 +1,15 @@
 {
   "$id": "http://json-schema-ts-fastify/schemas/test",
-  "type": "boolean"
+  "type": "object",
+  "additionalProperties": false,
+  "title": "TestInterface",
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "objectId": true
+    }
+  }
 }
