@@ -20,6 +20,7 @@ import { RouteHandler } from "${options.module}"
 export ${generateSchema(schema, name)}
 
 ${await generateDefinitionInterfaces(schema.definitions || {}, name, options)}
+
 ${await compile(
     {
       ...addDefaultValueToSchema(schema.params || defaultSchema),

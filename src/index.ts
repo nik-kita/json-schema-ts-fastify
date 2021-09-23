@@ -31,7 +31,7 @@ program
         prefix: '',
         ext: '.ts',
         module: 'fastify',
-        bannerComment: '/** Hello */',
+        bannerComment: '',
       },
       ...options,
     };
