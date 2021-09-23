@@ -1,11 +1,12 @@
-import { promisify } from 'util';
-import { Options } from 'json-schema-to-typescript';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
+import { UserOptions } from './types';
 
-export type _Options = Partial<Options & { ext: string, module: string, prefix: string }>;
-
-export const defaultSchema = { type: "object", additionalProperties: false };
+export const defaultSchema = {
+  type: 'object',
+  additionalProperties: false,
+};
 
 export function capitalize(text: string) {
   if (!text) {
@@ -22,12 +23,12 @@ export function capitalize(text: string) {
 export async function writeFile(
   parsedPath: path.ParsedPath,
   template: string,
-  options: _Options
+  options: UserOptions,
 ) {
   const write = promisify(fs.writeFile);
   return write(
     path.join(parsedPath.dir, parsedPath.name + options.ext),
-    template
+    template,
   );
 }
 
