@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nik-kita/json-schema-ts-fastify/issues"
   },
-  "homepage": "https://github.com/nik-kita/json-schema-ts-fastify#readme"
+  "homepage": "https://github.com/nik-kita/json-schema-ts-fastify#readme",
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
 }
