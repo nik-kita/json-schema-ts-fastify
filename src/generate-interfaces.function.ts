@@ -9,8 +9,7 @@ export async function generateInterfaces(schema: any, options: UserOptions, name
   options.bannerComment = '';
 
   return `\
-  ${bannerComment ?? ''}
-/**
+  ${bannerComment ?? ''}/**
 * This file was automatically generated. DO NOT MODIFY IT BY HAND.
 * Instead, modify the corresponding JSONSchema file and regenerate the types.
 */
@@ -72,6 +71,6 @@ export type ${capitalize(options.prefix + name)}RouteGeneric = {
 
 export type ${capitalize(options.prefix + name)}Handler = RouteHandler<${
   capitalize(options.prefix + name)
-}RouteGeneric>;\
+}RouteGeneric>;
 `;
 }
