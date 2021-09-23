@@ -3,6 +3,9 @@
   "version": "0.0.3",
   "description": "",
   "main": "./dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
   "bin": {
     "json-schema-ts-fastify": "./dist/index.js"
   },
