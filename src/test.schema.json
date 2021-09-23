@@ -1,0 +1,16 @@
+{
+  "$id": "fasdfasdf",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "object",
+      "objectId": true
+    },
+    "taste": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id"
+  ]
+}
