@@ -7,7 +7,7 @@
     "dist/**/*"
   ],
   "bin": {
-    "json-schema-ts-fastify": "./dist/index.js"
+    "json-schema-ts-fastify": "./dist/src/index.js"
   },
   "scripts": {
     "build": "tsc",
