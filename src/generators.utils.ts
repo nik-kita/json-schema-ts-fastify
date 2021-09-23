@@ -5,7 +5,7 @@ import { addDefaultValueToSchema, capitalize, defaultSchema } from './helpers';
 import { UserOptions } from './types';
 
 export function generateSchema(schema: object, name: string) {
-  return `const ${name}Schema = ${JSON.stringify(schema)};`;
+  return `const ${name}Schema = ${JSON.stringify(schema, null, 2)};`;
 }
 
 export async function generateReplyInterfaces(
