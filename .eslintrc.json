@@ -33,6 +33,8 @@
                 "allowAllPropertiesOnSameLine": false
             }
         ],
+        "no-underscore-dangle": "off",
+        "no-useless-escape": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
